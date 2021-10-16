@@ -12,6 +12,8 @@ class Intern extends Employee(){
         return 'Intern'
     }
     getSchool(){
-        
+
     }
 }
+
+module.exports = Intern
