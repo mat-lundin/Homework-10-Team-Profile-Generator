@@ -93,12 +93,20 @@ const internQuestions = [
     },
 ];
 
-
+//we have to loop through the questions somehow, and get a new object name each time an eng or int is created
+// https://stackoverflow.com/questions/47665616/how-to-run-for-loop-asynchronously-with-inquirer-prompt
 function init(){
     inquirer
         .prompt(mgmtQuestions)
         .then((data) => {
             const mgmt = new Manager(data.mgmtName,data.mgmtId,data.mgmtEmail,data.mgmtOfficeNum);
+            if (data.newEmp === 'Engineer'){
+                inquirer
+                .prompt(engineerQuestions)
+                .then((data) => {
+                    const 
+                })
+            }
         })
 
 
