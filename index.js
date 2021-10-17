@@ -6,6 +6,9 @@ const inquirer = require("inquirer");
 const fs = require('fs');
 const Choices = require('inquirer/lib/objects/choices');
 
+//array of the team objects so we don't have to worry about naming them and actually looping through any prompts
+const team = [];
+
 const mgmtQuestions = [
     {
         type: 'input',
@@ -93,20 +96,57 @@ const internQuestions = [
     },
 ];
 
-//we have to loop through the questions somehow, and get a new object name each time an eng or int is created
-// https://stackoverflow.com/questions/47665616/how-to-run-for-loop-asynchronously-with-inquirer-prompt
+function engPrompt(){
+    inquirer
+    .prompt(engineerQuestions)
+    .then((data) => {
+        const eng = new Engineer(data.engName,data.engId,data.engEmail,data.engGithub);
+        team.push(eng);
+        if (data.newEmp === 'Engineer'){
+            engPrompt();
+        } else if (data.newEmp === 'Intern') {
+            intPrompt();
+        } else {
+            renderHTML();
+        };
+    })
+}
+
+function intPrompt(){
+    inquirer
+    .prompt(internQuestions)
+    .then((data) => {
+        const int = new Intern(data.intName,data.intId,data.intEmail,data.intSchool);
+        team.push(int);
+        if (data.newEmp === 'Engineer'){
+            engPrompt();
+        } else if (data.newEmp === 'Intern') {
+            intPrompt();
+        } else {
+            renderHTML();
+        };
+    })
+}
+
+//loop through the team array and build our HTML
+function renderHTML(){
+
+}
+
+//ask manager questions, then do an if then to call the engineer, intern, or build function. at the end of each function do the same if then to call the appropriate one
 function init(){
     inquirer
         .prompt(mgmtQuestions)
         .then((data) => {
             const mgmt = new Manager(data.mgmtName,data.mgmtId,data.mgmtEmail,data.mgmtOfficeNum);
+            team.push(mgmt);
             if (data.newEmp === 'Engineer'){
-                inquirer
-                .prompt(engineerQuestions)
-                .then((data) => {
-                    const 
-                })
-            }
+                engPrompt();
+            } else if (data.newEmp === 'Intern') {
+                intPrompt();
+            } else {
+                renderHTML();
+            };
         })
 
 
