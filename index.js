@@ -140,23 +140,35 @@ function intPrompt(){
 //generate html for manager then remove them from the array so we can loop through rest of the team and separate the html
 function mgmtHTML(){
     const obj = team[0];
+    //after grabbing the manager, remove it from the array
+    team.shift();
     return `                <div class="card" style="width: 18rem;">
     <div class="card-body">
-      <h5 class="card-title">${this.getName()}</h5>
-      <h6 class="card-subtitle mb-2 text-muted">Role</h6>
+      <h5 class="card-title">${obj.getName()}</h5>
+      <h6 class="card-subtitle mb-2 text-muted">${obj.getRole()}</h6>
       <p class="card-text">
           <ul>
               <li>Employee ID: ${obj.getId()}</li>
-              <li>Email: </li>
-              <li>Office Number: </li>
+              <li>Email: ${obj.getEmail()}</li>
+              <li>Office Number: ${obj.officeNum}</li>
           </ul>
       </p>
-      <a href="#" class="card-link">Card link</a>`
+      <a href="#" class="card-link">Card link</a>
+      </div>
+      </div>`
 }
 
-//return html from the object array
+//return html from the object array which is now sans manager
 function teamHTML(){
-
+    const html = ``
+    team.forEach(function (item){
+        if (item instanceof Engineer) {
+            html = html + ``
+        } else {
+            html = html + ``
+        }
+    })
+    return html;
 }
 
 //loop through the team array and build our HTML
@@ -175,10 +187,7 @@ function renderHTML(){
     <div class='container'>
         <div class='row'>
             <div class=col>
-                ${mgmtHTML}
-
-                    </div>
-                  </div>
+                ${mgmtHTML()}
             </div>
         </div>
     </div>
