@@ -4,7 +4,7 @@ const Engineer = require('./engineer');
 const Intern = require('./intern');
 const inquirer = require("inquirer");
 const fs = require('fs');
-const Choices = require('inquirer/lib/objects/choices');
+const choices = require('inquirer/lib/objects/choices');
 
 //array of the team objects so we don't have to worry about naming them and actually looping through any prompts
 const team = [];
@@ -130,7 +130,7 @@ function intPrompt(){
 
 //loop through the team array and build our HTML
 function renderHTML(){
-
+    console.log(team);
 }
 
 //ask manager questions, then do an if then to call the engineer, intern, or build function. at the end of each function do the same if then to call the appropriate one
