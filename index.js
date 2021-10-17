@@ -23,7 +23,10 @@ const mgmtQuestions = [
     {
         type: 'input',
         message: 'Manager Email:',
-        name: 'mgmtEmail'
+        name: 'mgmtEmail',
+        validate: (answers) => {
+            answers.mgmtEmail.includes('@');
+        }
     },
     {
         type: 'input',
@@ -52,7 +55,10 @@ const engineerQuestions = [
     {
         type: 'input',
         message: 'Employee Email:',
-        name: 'engEmail'
+        name: 'engEmail',
+        validate: (answers) => {
+            answers.engEmail.includes('@');
+        }
     },
     {
         type: 'input',
@@ -81,7 +87,10 @@ const internQuestions = [
     {
         type: 'input',
         message: 'Intern Email:',
-        name: 'intEmail'
+        name: 'intEmail',
+        validate: (answers) => {
+            answers.intEmail.includes('@');
+        }
     },
     {
         type: 'input',
@@ -90,7 +99,7 @@ const internQuestions = [
     },
     {
         type: 'list',
-        message: 'Add a team member? :',
+        message: 'Add a team member?',
         name: 'newEmp',
         choices: ['Engineer','Intern','Finish and build my team']
     },
