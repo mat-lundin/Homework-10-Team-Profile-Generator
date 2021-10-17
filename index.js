@@ -137,9 +137,54 @@ function intPrompt(){
     })
 }
 
+//generate html for manager then remove them from the array so we can loop through rest of the team and separate the html
+function mgmtHTML(){
+    const obj = team[0];
+    return `                <div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title">${this.getName()}</h5>
+      <h6 class="card-subtitle mb-2 text-muted">Role</h6>
+      <p class="card-text">
+          <ul>
+              <li>Employee ID: ${obj.getId()}</li>
+              <li>Email: </li>
+              <li>Office Number: </li>
+          </ul>
+      </p>
+      <a href="#" class="card-link">Card link</a>`
+}
+
+//return html from the object array
+function teamHTML(){
+
+}
+
 //loop through the team array and build our HTML
 function renderHTML(){
     console.log(team);
+    `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <title>My Team</title>
+</head>
+<body>
+    <div class='container'>
+        <div class='row'>
+            <div class=col>
+                ${mgmtHTML}
+
+                    </div>
+                  </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+    `
 }
 
 //ask manager questions, then do an if then to call the engineer, intern, or build function. at the end of each function do the same if then to call the appropriate one
