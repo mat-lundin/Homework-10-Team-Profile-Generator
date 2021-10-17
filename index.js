@@ -161,9 +161,19 @@ function mgmtHTML(){
 //return html from the object array which is now sans manager
 function teamHTML(){
     const html = ``
-    team.forEach(function (item){
+    team.forEach(function (obj){
         if (item instanceof Engineer) {
-            html = html + ``
+            html = html + `                <div class="card" style="width: 18rem;">
+            <div class="card-body">
+              <h5 class="card-title">${obj.getName()}</h5>
+              <h6 class="card-subtitle mb-2 text-muted">${obj.getRole()}</h6>
+              <p class="card-text">
+                  <ul>
+                      <li>Employee ID: ${obj.getId()}</li>
+                      <li>Email: ${obj.getEmail()}</li>
+                  </ul>
+              </p>
+              <a href="${obj.getGithub()}" class="card-link">Github</a>`
         } else {
             html = html + ``
         }
@@ -174,7 +184,7 @@ function teamHTML(){
 //loop through the team array and build our HTML
 function renderHTML(){
     console.log(team);
-    `<!DOCTYPE html>
+    return `<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -196,6 +206,13 @@ function renderHTML(){
     `
 }
 
+//write the file!
+function writeToFile(fileName, data) {
+    fs.writeFile(fileName,data, (err) => {
+        err ? console.error(err) : console.log('HTML file generated!');
+    })
+}
+
 //ask manager questions, then do an if then to call the engineer, intern, or build function. at the end of each function do the same if then to call the appropriate one
 function init(){
     inquirer
@@ -208,7 +225,7 @@ function init(){
             } else if (data.newEmp === 'Intern') {
                 intPrompt();
             } else {
-                renderHTML();
+                writeToFile('index.html',renderHTML());
             };
         })
 
