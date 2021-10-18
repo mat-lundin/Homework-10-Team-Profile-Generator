@@ -2,7 +2,7 @@
   "name": "homework-10-team-profile-generator",
   "version": "1.0.0",
   "description": "",
-  "main": "engineer.js",
+  "main": "index.js",
   "directories": {
     "test": "test"
   },

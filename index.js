@@ -1,6 +1,6 @@
 // const Employee = require('./lib/employee');
-const Manager = require('./manager');
-const Engineer = require('./engineer');
+const Manager = require('./lib/manager');
+const Engineer = require('./lib/engineer');
 const Intern = require('./lib/intern');
 const inquirer = require("inquirer");
 const fs = require('fs');
@@ -24,9 +24,9 @@ const mgmtQuestions = [
         type: 'input',
         message: 'Manager Email:',
         name: 'mgmtEmail',
-        validate: (answers) => {
-            answers.mgmtEmail.includes('@');
-        }
+        // validate: (answers) => {
+        //     answers.mgmtEmail.includes('@');}
+    
     },
     {
         type: 'input',
@@ -56,9 +56,9 @@ const engineerQuestions = [
         type: 'input',
         message: 'Employee Email:',
         name: 'engEmail',
-        validate: (answers) => {
-            answers.engEmail.includes('@');
-        }
+        // validate: (answers) => {
+        //     answers.engEmail.includes('@');
+        // }
     },
     {
         type: 'input',
@@ -88,9 +88,9 @@ const internQuestions = [
         type: 'input',
         message: 'Intern Email:',
         name: 'intEmail',
-        validate: (answers) => {
-            answers.intEmail.includes('@');
-        }
+        // validate: (answers) => {
+        //     answers.intEmail.includes('@');
+        // }
     },
     {
         type: 'input',
@@ -116,7 +116,7 @@ function engPrompt(){
         } else if (data.newEmp === 'Intern') {
             intPrompt();
         } else {
-            renderHTML();
+            writeToFile('./dist/testfiles/index.html',renderHTML());
         };
     })
 }
@@ -132,7 +132,7 @@ function intPrompt(){
         } else if (data.newEmp === 'Intern') {
             intPrompt();
         } else {
-            renderHTML();
+            writeToFile('./dist/testfiles/index.html',renderHTML());
         };
     })
 }
@@ -160,7 +160,7 @@ function mgmtHTML(){
 
 //return html from the object array which is now sans manager
 function teamHTML(){
-    const html = ``
+    let html = ``
     team.forEach(function (obj){
         if (obj instanceof Engineer) {
             html = html + `                <div class="card" style="width: 18rem;">
