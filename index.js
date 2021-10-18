@@ -142,7 +142,7 @@ function mgmtHTML(){
     const obj = team[0];
     //after grabbing the manager, remove it from the array
     team.shift();
-    return `                <div class="card" style="width: 18rem;">
+    return `                <div class="card mgmt" style="width: 18rem;">
     <div class="card-body">
       <h5 class="card-title">${obj.getName()}</h5>
       <h6 class="card-subtitle mb-2 text-muted">${obj.getRole()}</h6>
@@ -153,7 +153,6 @@ function mgmtHTML(){
               <li>Office Number: ${obj.officeNum}</li>
           </ul>
       </p>
-      <a href="#" class="card-link">Card link</a>
       </div>
       </div>`
 }
@@ -163,7 +162,8 @@ function teamHTML(){
     let html = ``
     team.forEach(function (obj){
         if (obj instanceof Engineer) {
-            html = html + `                <div class="card" style="width: 18rem;">
+            html = html + `<div class='col'>
+            <div class="card eng" style="width: 18rem;">
             <div class="card-body">
               <h5 class="card-title">${obj.getName()}</h5>
               <h6 class="card-subtitle mb-2 text-muted">${obj.getRole()}</h6>
@@ -173,9 +173,13 @@ function teamHTML(){
                       <li>Email: ${obj.getEmail()}</li>
                   </ul>
               </p>
-              <a href="${obj.getGithub()}" class="card-link">Github</a>`;
+              <a href="${obj.getGithub()}" class="card-link">Github</a>
+              </div>
+              </div>
+              </div>`;
         } else {
-            html = html + `                <div class="card" style="width: 18rem;">
+            html = html + `<div class='col'>
+            <div class="card int" style="width: 18rem;">
             <div class="card-body">
               <h5 class="card-title">${obj.getName()}</h5>
               <h6 class="card-subtitle mb-2 text-muted">${obj.getRole()}</h6>
@@ -185,8 +189,10 @@ function teamHTML(){
                       <li>Email: ${obj.getEmail()}</li>
                       <li>School: ${obj.getSchool()}</li>
                   </ul>
-              </p>`
-              ;
+              </p>
+              </div>
+              </div>
+              </div>`;
         }
     })
     return html;
@@ -202,16 +208,20 @@ function renderHTML(){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link rel="stylesheet" href="./style.css">
     <title>My Team</title>
 </head>
 <body>
+    <header>
+        <h1>Org Chart for ${team[0].getName()}</h1>
+    </header>
     <div class='container'>
         <div class='row'>
-            <div class=col>
+            <div class='col'>
                 ${mgmtHTML()}
             </div>
         </div>
-        <div class='row'>
+        <div class='row justify-content-center'>
             ${teamHTML()}
         </div>
     </div>
