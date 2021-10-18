@@ -1,10 +1,10 @@
-const Employee = require('./lib/employee');
+// const Employee = require('./lib/employee');
 const Manager = require('./manager');
 const Engineer = require('./engineer');
 const Intern = require('./lib/intern');
 const inquirer = require("inquirer");
 const fs = require('fs');
-const choices = require('inquirer/lib/objects/choices');
+// const choices = require('inquirer/lib/objects/choices');
 
 //array of the team objects so we don't have to worry about naming them and actually looping through any prompts
 const team = [];
@@ -162,7 +162,7 @@ function mgmtHTML(){
 function teamHTML(){
     const html = ``
     team.forEach(function (obj){
-        if (item instanceof Engineer) {
+        if (obj instanceof Engineer) {
             html = html + `                <div class="card" style="width: 18rem;">
             <div class="card-body">
               <h5 class="card-title">${obj.getName()}</h5>
@@ -173,9 +173,9 @@ function teamHTML(){
                       <li>Email: ${obj.getEmail()}</li>
                   </ul>
               </p>
-              <a href="${obj.getGithub()}" class="card-link">Github</a>`
+              <a href="${obj.getGithub()}" class="card-link">Github</a>`;
         } else {
-            html = html + ``
+            html = html + ``;
         }
     })
     return html;
@@ -225,7 +225,7 @@ function init(){
             } else if (data.newEmp === 'Intern') {
                 intPrompt();
             } else {
-                writeToFile('index.html',renderHTML());
+                writeToFile('./dist/testfiles/index.html',renderHTML());
             };
         })
 
