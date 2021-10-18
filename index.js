@@ -175,7 +175,18 @@ function teamHTML(){
               </p>
               <a href="${obj.getGithub()}" class="card-link">Github</a>`;
         } else {
-            html = html + ``;
+            html = html + `                <div class="card" style="width: 18rem;">
+            <div class="card-body">
+              <h5 class="card-title">${obj.getName()}</h5>
+              <h6 class="card-subtitle mb-2 text-muted">${obj.getRole()}</h6>
+              <p class="card-text">
+                  <ul>
+                      <li>Employee ID: ${obj.getId()}</li>
+                      <li>Email: ${obj.getEmail()}</li>
+                      <li>School: ${obj.getSchool()}</li>
+                  </ul>
+              </p>`
+              ;
         }
     })
     return html;
@@ -199,6 +210,9 @@ function renderHTML(){
             <div class=col>
                 ${mgmtHTML()}
             </div>
+        </div>
+        <div class='row'>
+            ${teamHTML()}
         </div>
     </div>
 </body>
