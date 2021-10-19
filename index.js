@@ -149,7 +149,7 @@ function mgmtHTML(){
       <p class="card-text">
           <ul>
               <li>Employee ID: ${obj.getId()}</li>
-              <li>Email: ${obj.getEmail()}</li>
+              <li><a href='mailto:${obj.getEmail()}'>Email</a></li>
               <li>Office Number: ${obj.officeNum}</li>
           </ul>
       </p>
@@ -170,7 +170,7 @@ function teamHTML(){
               <p class="card-text">
                   <ul>
                       <li>Employee ID: ${obj.getId()}</li>
-                      <li>Email: ${obj.getEmail()}</li>
+                      <li><a href='mailto:${obj.getEmail()}'>Email</a></li>
                   </ul>
               </p>
               <a href="${obj.getGithub()}" class="card-link">Github</a>
@@ -186,7 +186,7 @@ function teamHTML(){
               <p class="card-text">
                   <ul>
                       <li>Employee ID: ${obj.getId()}</li>
-                      <li>Email: ${obj.getEmail()}</li>
+                      <li><a href='mailto:${obj.getEmail()}'>Email</a></li>
                       <li>School: ${obj.getSchool()}</li>
                   </ul>
               </p>
@@ -216,11 +216,12 @@ function renderHTML(){
         <h1>Org Chart for ${team[0].getName()}</h1>
     </header>
     <div class='container'>
-        <div class='row'>
-            <div class='col'>
+        <div class='row justify-content-center'>
+            <div class='col-3'>
                 ${mgmtHTML()}
             </div>
         </div>
+        <br>
         <div class='row justify-content-center'>
             ${teamHTML()}
         </div>
