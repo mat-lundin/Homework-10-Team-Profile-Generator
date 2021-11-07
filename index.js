@@ -132,7 +132,7 @@ function intPrompt(){
         } else if (data.newEmp === 'Intern') {
             intPrompt();
         } else {
-            writeToFile('./dist/testfiles/index.html',renderHTML());
+            writeToFile('./index.html',renderHTML());
         };
     })
 }
